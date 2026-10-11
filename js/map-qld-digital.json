@@ -14,7 +14,7 @@
   },
 
   "data": {
-    "url": "../data/qld_lga.json",
+    "url": "data/qld_lga.json",
     "format": {
       "type": "topojson",
       "feature": "Local_Government_Areas"
