@@ -31,7 +31,7 @@ main {
 .hero {
   position: relative;
   height: 420px;
-  background-image: url("../images/library.jpg");
+  background-image: url("../images/Library.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
