@@ -1,0 +1,183 @@
+
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": null,
+    "data": {
+      "url": "data/language_checkouts.csv",
+      "format": {"type": "csv"}
+    },
+    "spacing": 5,
+    "transform": [
+      {
+        "calculate": "toNumber(datum.Year)",
+        "as": "YearNum"
+      },
+      {
+        "calculate": "toNumber(datum.Checkouts)",
+        "as": "Count"
+      }
+    ],
+    "hconcat": [
+      {
+        "width": 500,
+        "height": 450,
+        "title": {
+          "text": "2024",
+          "color": "#3778B7",
+          "fontSize": 17
+        },
+        "transform": [
+          {"filter": "datum.YearNum == 2024"}
+        ],
+        "mark": {
+          "type": "bar",
+          "color": "#3778B7",
+          "cornerRadiusEnd": 3
+        },
+        "encoding": {
+          "y": {
+            "field": "Language",
+            "type": "nominal",
+            "sort": [
+              "Chinese",
+              "Japanese",
+              "French",
+              "Spanish",
+              "Korean"
+            ],
+            "axis": null
+          },
+          "x": {
+            "field": "Count",
+            "type": "quantitative",
+            "scale": {
+              "domain": [0, 7000],
+              "reverse": true
+            },
+            "axis": {
+              "title": "Checkouts",
+              "values": [0, 2000, 4000, 6000],
+              "format": ",d",
+              "grid": true
+            }
+          },
+          "tooltip": [
+            {"field": "Language"},
+            {"field": "YearNum", "title": "Year"},
+            {
+              "field": "Count",
+              "title": "Checkouts",
+              "format": ",d"
+            }
+          ]
+        }
+      },
+      {
+        "width": 110,
+        "height": 450,
+        "data": {
+          "values": [
+            {"Language": "Chinese"},
+            {"Language": "Japanese"},
+            {"Language": "French"},
+            {"Language": "Spanish"},
+            {"Language": "Korean"}
+          ]
+        },
+        "mark": {
+          "type": "text",
+          "fontSize": 13,
+          "fontWeight": "bold",
+          "align": "center"
+        },
+        "encoding": {
+          "y": {
+            "field": "Language",
+            "type": "nominal",
+            "sort": [
+              "Chinese",
+              "Japanese",
+              "French",
+              "Spanish",
+              "Korean"
+            ],
+            "axis": null
+          },
+          "x": {
+            "value": 47
+          },
+          "text": {
+            "field": "Language"
+          }
+        }
+      },
+      {
+        "width": 280,
+        "height": 450,
+        "title": {
+          "text": "2026",
+          "color": "#D88A4D",
+          "fontSize": 17
+        },
+        "transform": [
+          {"filter": "datum.YearNum == 2026"}
+        ],
+        "mark": {
+          "type": "bar",
+          "color": "#D88A4D",
+          "cornerRadiusEnd": 3
+        },
+        "encoding": {
+          "y": {
+            "field": "Language",
+            "type": "nominal",
+            "sort": [
+              "Chinese",
+              "Japanese",
+              "French",
+              "Spanish",
+              "Korean"
+            ],
+            "axis": null
+          },
+          "x": {
+            "field": "Count",
+            "type": "quantitative",
+            "scale": {
+              "domain": [0, 7000]
+            },
+            "axis": {
+              "title": "Checkouts",
+              "values": [0, 2000, 4000, 6000],
+              "format": ",d",
+              "grid": true
+            }
+          },
+          "tooltip": [
+            {"field": "Language"},
+            {"field": "YearNum", "title": "Year"},
+            {
+              "field": "Count",
+              "title": "Checkouts",
+              "format": ",d"
+            }
+          ]
+        }
+      }
+    ],
+    "resolve": {
+      "scale": {
+        "y": "shared",
+        "x": "independent"
+      }
+    },
+    "config": {
+      "view": {"stroke": null},
+      "axis": {
+        "labelFontSize": 12,
+        "titleFontSize": 13
+      },
+      "font": "Arial"
+    }
+  }
+  

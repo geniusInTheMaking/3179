@@ -1,0 +1,101 @@
+
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "data/library_membership.csv",
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {
+        "calculate": "toNumber(datum.MembershipRate)",
+        "as": "Rate"
+      },
+      {
+        "calculate": "sequence(0, 100)",
+        "as": "Squares"
+      },
+      {
+        "flatten": ["Squares"]
+      },
+      {
+        "calculate": "datum.Squares % 10",
+        "as": "Column"
+      },
+      {
+        "calculate": "9 - floor(datum.Squares / 10)",
+        "as": "Row"
+      },
+      {
+        "calculate": "datum.Squares < round(datum.Rate) ? 'Member' : 'Other'",
+        "as": "Status"
+      }
+    ],
+    "facet": {
+  "field": "State",
+  "type": "nominal",
+  "columns": 3,
+  "header": {
+    "title": null,
+    "labelFontSize": 16,
+    "labelFontWeight": "bold",
+    "labelPadding": 12
+  }
+},
+"spacing": 60,
+    
+    
+    "spec": {
+      "width": 300,
+      "height": 300,
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 1,
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "Column",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {
+          "field": "Row",
+          "type": "ordinal",
+          "sort": "ascending",
+          "axis": null
+        },
+        "color": {
+          "field": "Status",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Member", "Other"],
+            "range": ["#8a5a3b", "#dcd3c8"]
+          },
+          "legend": {
+  "title": null,
+  "orient": "bottom",
+  "labelFontSize": 20,
+  "symbolSize": 200,
+  "labelLimit": 200,
+  "padding": 15,
+  "offset": 10
+}
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal"},
+          {
+            "field": "Rate",
+            "type": "quantitative",
+            "title": "Membership rate (%)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    "config": {
+      "view": {"stroke": null},
+      "background": null
+    }
+  }
+  

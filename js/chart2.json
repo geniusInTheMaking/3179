@@ -1,0 +1,258 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  
+    "width": "container",
+"height": 330,
+
+"autosize": {
+  "type": "fit",
+  "contains": "padding",
+  "resize": true
+},
+  
+    "background": null,
+  
+    "data": {
+      "url": "data/reading_time_sex.csv"
+    },
+  
+ 
+    "encoding": {
+  
+      "y": {
+        "field": "Generation",
+        "type": "nominal",
+  
+        "sort": [
+          "Generation Z",
+          "Millennials",
+          "Generation X",
+          "Baby Boomers",
+          "Interwar"
+        ],
+  
+        "axis": {
+          "title": null,
+          "domain": false,
+          "ticks": false,
+  
+          "labelFont": "Helvetica Neue",
+          "labelFontSize": 15,
+          "labelColor": "#3f3b38",
+          "labelPadding": 15
+        }
+      }
+  
+    },
+  
+    "layer": [
+  
+      {
+        "mark": {
+          "type": "rule",
+          "strokeWidth": 3,
+          "color": "#c9b8a6"
+        },
+  
+        "encoding": {
+  
+          "x": {
+            "field": "Male",
+            "type": "quantitative",
+  
+            "scale": {
+              "domain": [0, 3.2]
+            },
+  
+            "axis": {
+              "title": "Average reading time per day (hours)",
+              "titleFont": "Helvetica Neue",
+              "titleFontSize": 16,
+              "titleFontWeight": 600,
+              "titlePadding": 20,
+              "titleColor": "#252525",
+              
+  
+              "labelFont": "Helvetica Neue",
+              "labelFontSize": 12,
+              "labelColor": "#68635e",
+  
+              "values": [0, 0.5, 1, 1.5, 2, 2.5, 3],
+                "labelExpr": "datum.value + 'h'",
+
+                "domain": false,
+                "ticks": false,
+                "grid": true,
+                "gridColor": "#ded9d2",
+                "gridOpacity": 0.7
+            }
+          },
+  
+          "x2": {
+            "field": "Female"
+          }
+  
+        }
+      },
+  
+  
+      {
+        "mark": {
+          "type": "circle",
+          "size": 250,
+          "color": "#4f6d7a",
+          "stroke": "#ffffff",
+          "strokeWidth": 1.5
+        },
+  
+        "encoding": {
+  
+          "x": {
+            "field": "Male",
+            "type": "quantitative"
+          },
+  
+          "tooltip": [
+  
+            {
+              "field": "Generation",
+              "type": "nominal",
+              "title": "Generation"
+            },
+  
+            {
+              "field": "Male",
+              "type": "quantitative",
+              "title": "Male",
+              "format": ".1f"
+            }
+  
+  
+          ]
+  
+        }
+      },
+  
+  
+      {
+        "mark": {
+          "type": "circle",
+          "size": 250,
+          "color": "#b66b5d",
+          "stroke": "#ffffff",
+          "strokeWidth": 1.5
+        },
+  
+        "encoding": {
+  
+          "x": {
+            "field": "Female",
+            "type": "quantitative"
+          },
+  
+          "tooltip": [
+  
+            {
+              "field": "Generation",
+              "type": "nominal",
+              "title": "Generation"
+            },
+  
+            {
+              "field": "Female",
+              "type": "quantitative",
+              "title": "Female",
+              "format": ".1f"
+            },
+  
+            {
+              "field": "FemaleLow",
+              "type": "quantitative",
+              "title": "95% CI — low",
+              "format": ".1f"
+            },
+  
+            {
+              "field": "FemaleHigh",
+              "type": "quantitative",
+              "title": "95% CI — high",
+              "format": ".1f"
+            }
+  
+          ]
+  
+        }
+      },
+  
+  
+      {
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": -11,
+  
+          "font": "Helvetica Neue",
+          "fontSize": 12,
+          "fontWeight": 600,
+  
+          "color": "#4f6d7a"
+        },
+  
+        "encoding": {
+  
+          "x": {
+            "field": "Male",
+            "type": "quantitative"
+          },
+  
+          "text": {
+            "field": "Male",
+            "type": "quantitative",
+            "format": ".1f"
+          }
+  
+        }
+      },
+  
+  
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 11,
+  
+          "font": "Helvetica Neue",
+          "fontSize": 12,
+          "fontWeight": 600,
+  
+          "color": "#b66b5d"
+        },
+  
+        "encoding": {
+  
+          "x": {
+            "field": "Female",
+            "type": "quantitative"
+          },
+  
+          "text": {
+            "field": "Female",
+            "type": "quantitative",
+            "format": ".1f"
+          }
+  
+        }
+      }
+  
+    ],
+  
+    "config": {
+  
+      "view": {
+        "stroke": null
+      }
+  
+    }
+  }

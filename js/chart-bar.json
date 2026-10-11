@@ -1,0 +1,86 @@
+
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 650,
+  "height": 390,
+  "background": null,
+  "data": {
+    "url": "data/national_literature.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "format(datum.Percentage, '.0f') + '%'",
+      "as": "PercentageLabel"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "LiteratureType",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null,
+      "axis": {
+        "labelFontSize": 13,
+        "labelLimit": 230,
+        "labelPadding": 12,
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "x": {
+      "field": "Percentage",
+      "type": "quantitative",
+      "scale": {
+        "domain": [0, 60]
+      },
+      "title": "Percentage of respondents (%)",
+      "axis": {
+        "values": [0, 15, 30, 45, 60],
+        "labelExpr": "datum.value + '%'",
+        "labelFontSize": 12,
+        "titleFontSize": 13,
+        "grid": true,
+        "gridDash": [3, 4],
+        "domain": false,
+        "ticks": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#285799",
+        "cornerRadiusEnd": 5,
+        "size": 35
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 7,
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "color": "#285799"
+      },
+      "encoding": {
+        "text": {
+          "field": "PercentageLabel",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial"
+  }
+}

@@ -1,0 +1,193 @@
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+
+  "title": {
+    "text": "Reading preferences differ sharply by audience",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+
+  "width": 500,
+  "height": 300,
+
+  "data": {
+    "url": "data/brisbane_age_category.csv"
+  },
+
+  "transform": [
+    {
+      "fold": ["Adult", "YA", "Juvenile"],
+      "as": ["Audience", "Checkouts"]
+    },
+
+    {
+      "calculate": "datum.Audience == 'Juvenile' ? 'Juvenile (under 18)' : datum.Audience == 'YA' ? 'Young Adults (18–44)' : 'Adults (45+)'",
+      "as": "AudienceLabel"
+    },
+
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "Checkouts",
+          "as": "AudienceTotal"
+        }
+      ],
+      "groupby": ["Audience"]
+    },
+
+    {
+      "calculate": "datum.Checkouts / datum.AudienceTotal * 100",
+      "as": "Percentage"
+    },
+
+    {
+      "calculate": "format(datum.Percentage, '.1f') + '%'",
+      "as": "PercentageLabel"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 2
+      },
+
+      "encoding": {
+        "x": {
+          "field": "AudienceLabel",
+          "type": "nominal",
+          "title": "Audience",
+          "sort": [
+            "Juvenile (under 18)",
+            "Young Adults (18–44)",
+            "Adults (45+)"
+          ],
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 13,
+            "titleFontSize": 13
+          }
+        },
+
+        "y": {
+          "field": "Category",
+          "type": "nominal",
+          "title": "Reading category",
+          "sort": [
+            "Fiction",
+            "Non-Fiction",
+            "Graphic Novels",
+            "Picture Books",
+            "Magazines"
+          ],
+          "axis": {
+            "labelFontSize": 13,
+            "titleFontSize": 13
+          }
+        },
+
+        "color": {
+          "field": "Percentage",
+          "type": "quantitative",
+          "title": "Share (%)",
+          "scale": {
+            "scheme": "blues",
+            "domain": [0, 60]
+          },
+          "legend": {
+            "orient": "right",
+            "gradientLength": 250,
+            "values": [0, 10, 20, 30, 40, 50, 60],
+            "labelExpr": "datum.value + '%'"
+          }
+        },
+
+        "tooltip": [
+          {
+            "field": "AudienceLabel",
+            "type": "nominal",
+            "title": "Audience"
+          },
+          {
+            "field": "Category",
+            "type": "nominal",
+            "title": "Category"
+          },
+          {
+            "field": "Checkouts",
+            "type": "quantitative",
+            "title": "Checkout records",
+            "format": ","
+          },
+          {
+            "field": "PercentageLabel",
+            "type": "nominal",
+            "title": "Share"
+          }
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 14,
+        "fontWeight": "bold"
+      },
+
+      "encoding": {
+        "x": {
+          "field": "AudienceLabel",
+          "type": "nominal",
+          "sort": [
+            "Juvenile (under 18)",
+            "Young Adults (18–44)",
+            "Adults (45+)"
+          ]
+        },
+
+        "y": {
+          "field": "Category",
+          "type": "nominal",
+          "sort": [
+            "Fiction",
+            "Non-Fiction",
+            "Graphic Novels",
+            "Picture Books",
+            "Magazines"
+          ]
+        },
+
+        "text": {
+          "field": "PercentageLabel"
+        },
+
+        "color": {
+          "condition": {
+            "test": "datum.Percentage >= 30",
+            "value": "white"
+          },
+          "value": "black"
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": "bold"
+    }
+  }
+}
