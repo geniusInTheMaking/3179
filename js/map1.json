@@ -1,15 +1,21 @@
 
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 850,
-  "height": 700,
+  "width": "container",
+  "height": 650,
+  "padding": {
+  "top": 0,
+  "bottom": 10,
+  "left": 0,
+  "right": 0
+},
   "background": null,
-
   "autosize": {
     "type": "fit",
     "contains": "padding",
     "resize": true
   },
+  
 
   "layer": [
     {
@@ -76,7 +82,7 @@
           {
             "field": "LoansPerResident",
             "type": "quantitative",
-            "title": "Loans per resident",
+            "title": "Average loans per resident",
             "format": ".2f"
           }
         ]
@@ -146,7 +152,7 @@
         "type": "circle",
         "opacity": 0.7,
         "stroke": "white",
-        "strokeWidth": 0.8
+        "strokeWidth": 1.2
       },
 
       "encoding": {
@@ -163,30 +169,30 @@
         "size": {
           "field": "TotalLoans",
           "type": "quantitative",
-          "title": "Total Loans",
+          "title": "Total library loans",
           "scale": {
-            "range": [20, 800]
+            "range": [15, 800]
           },
+         
           "legend": {
-            "orient": "bottom",
-            "direction": "horizontal",
-            "title": "Total Loans",
-            "offset": -20,
-            "values": [
-              100000,
-              300000,
-              500000,
-              700000,
-              900000
-            ],
-            "labelExpr": "datum.value / 1000 + 'k'"
-          }
+          "orient": "bottom",
+          "direction": "horizontal",
+          "title": "Total Loans",
+          "offset": -50,
+          "values": [100000, 300000, 500000, 700000, 900000],
+          "labelExpr": "datum.value / 1000 + 'k'",
+          "titleAnchor": "middle",
+          "titleFontSize": 14,
+          "labelFontSize": 14,
+          "titleFontWeight": "bold"
+
+}
         },
 
         "color": {
           "field": "LoansPerResident",
           "type": "quantitative",
-          "title": "Loans per resident",
+          "title": "Average loans per resident",
           "scale": {
             "range": [
               "#F3D6D9",
@@ -197,10 +203,16 @@
             ]
           },
           "legend": {
-            "orient": "bottom",
-            "direction": "horizontal",
-            "title": "Loans per resident"
-          }
+          "orient": "bottom",
+          "direction": "horizontal",
+          "title": "Average loans per resident",
+          "offset": -100,
+          "titleAnchor": "middle",
+          "padding": 0,
+          "titleFontSize": 14,
+          "labelFontSize": 14,
+          "titleFontWeight": "bold"
+        }
         },
 
         "tooltip": [
@@ -218,7 +230,7 @@
           {
             "field": "TotalLoans",
             "type": "quantitative",
-            "title": "Total loans",
+            "title": "Total library loans",
             "format": ",.0f"
           },
           {
@@ -226,6 +238,12 @@
             "type": "quantitative",
             "title": "Loans per resident",
             "format": ".2f"
+          },
+
+          {
+            "field": "ResidentExplanation",
+            "type": "nominal",
+            "title": "What this means"
           }
         ]
       }
