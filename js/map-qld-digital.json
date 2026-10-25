@@ -2,25 +2,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "background": null,
-
-  "width": 430,
-  "height": 530,
-
+  "width": 350,
+  "height": 430,
   "padding": {
     "left": 45,
     "right": 0,
     "top": 5,
     "bottom": 5
   },
-
   "data": {
-    "url": "data/qld_lga.json",
+    "url": "../data/qld_lga.json",
     "format": {
       "type": "topojson",
       "feature": "Local_Government_Areas"
     }
   },
-
   "transform": [
     {
       "calculate": "datum.properties.lga == 'Moreton Bay City' ? 'Moreton Bay Regional Council' : datum.properties.lga == 'Southern Downs Regional' ? 'Southern Downs Regioinal Council' : datum.properties.lga == 'Weipa Town' ? 'Weipa Town Authority' : datum.properties.lga + ' Council'",
@@ -30,7 +26,7 @@
       "lookup": "CouncilMatch",
       "from": {
         "data": {
-          "url": "data/council-data-2024-2025-queensland-public-libraries-annual-statistics.csv"
+          "url": "../data/council-data-2024-2025-queensland-public-libraries-annual-statistics.csv"
         },
         "key": "COUNCIL",
         "fields": [
@@ -41,39 +37,60 @@
       }
     },
     {
-      "calculate": "datum['USAGE DIGITAL / ELECTRONIC COLLECTION USAGE'] / datum['USAGE TOTAL CIRCULATION'] * 100",
+      "calculate": "toNumber(datum['USAGE TOTAL CIRCULATION']) > 0 ? toNumber(datum['USAGE DIGITAL / ELECTRONIC COLLECTION USAGE']) / toNumber(datum['USAGE TOTAL CIRCULATION']) * 100 : null",
       "as": "DigitalShare"
+    },
+    {
+      "calculate": "isValid(datum.DigitalShare) && isFinite(datum.DigitalShare) ? (datum.DigitalShare < 20 ? '0–20%' : datum.DigitalShare < 40 ? '20–40%' : datum.DigitalShare < 60 ? '40–60%' : datum.DigitalShare < 80 ? '60–80%' : '80–100%') : null",
+      "as": "DigitalBand"
+    },
+    {
+      "calculate": "isValid(datum.DigitalShare) && isFinite(datum.DigitalShare) ? format(datum.DigitalShare, '.1f') + '%' : 'No data'",
+      "as": "DigitalShareLabel"
     }
   ],
-
   "projection": {
     "type": "mercator"
   },
-
   "mark": {
     "type": "geoshape",
     "stroke": "white",
     "strokeWidth": 0.7
   },
-
   "encoding": {
     "color": {
-      "field": "DigitalShare",
-      "type": "quantitative",
-      "title": "Digital share (%)",
+      "field": "DigitalBand",
+      "type": "ordinal",
       "scale": {
-        "scheme": "blues",
-        "domain": [0, 100]
+        "domain": [
+          "0–20%",
+          "20–40%",
+          "40–60%",
+          "60–80%",
+          "80–100%"
+        ],
+        "range": [
+          "#fdbb84",
+          "#fc9855",
+          "#f9782b",
+          "#cf3900",
+          "#7f1d00"
+        ],
+        "unknown": "#D9D9D9"
       },
       "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "gradientLength": 300,
-        "values": [0, 25, 50, 75, 100],
-        "labelExpr": "datum.value + '%'"
+        "title": [
+          "Digital loans",
+          "(% of total loans)"
+        ],
+        "orient": "left",
+        "direction": "vertical",
+        "labelFontSize": 14,
+        "titleFontSize": 15,
+        "symbolType": "square",
+        "symbolSize": 250
       }
     },
-
     "tooltip": [
       {
         "field": "properties.lga",
@@ -83,36 +100,28 @@
       {
         "field": "USAGE TOTAL PHYSICAL ITEMS",
         "type": "quantitative",
-        "title": "Physical circulation",
+        "title": "Physical item loans",
         "format": ","
       },
       {
         "field": "USAGE DIGITAL / ELECTRONIC COLLECTION USAGE",
         "type": "quantitative",
-        "title": "Digital circulation",
+        "title": "Digital item loans",
         "format": ","
       },
       {
-        "field": "USAGE TOTAL CIRCULATION",
-        "type": "quantitative",
-        "title": "Total circulation",
-        "format": ","
-      },
-      {
-        "field": "DigitalShare",
-        "type": "quantitative",
-        "title": "Digital share (%)",
-        "format": ".1f"
+        "field": "DigitalShareLabel",
+        "type": "nominal",
+        "title": "Digital share of loans"
       }
     ]
   },
-
   "config": {
     "view": {
       "stroke": null
     },
     "legend": {
-      "labelFontSize": 12,
+      "labelFontSize": 14,
       "titleFontSize": 13,
       "titleFontWeight": "bold"
     }
