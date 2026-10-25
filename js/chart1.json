@@ -43,7 +43,7 @@
           "ticks": false,
   
           "labelFont": "Helvetica Neue",
-          "labelFontSize": 15,
+          "labelFontSize": 16,
           "labelColor": "#3f3b38",
           "labelPadding": 15
         }
@@ -58,10 +58,10 @@
         },
   
         "axis": {
-          "title": "Participation in reading for leisure (%)",
+          "title": "Reading for leisure participation rate (%)",
   
           "titleFont": "Helvetica Neue",
-          "titleFontSize": 17,
+          "titleFontSize": 16,
           "titleFontWeight": 500,
           "titlePadding": 15,
   
