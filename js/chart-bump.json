@@ -1,7 +1,7 @@
 
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 720,
+  "width":1100,
   "height": 440,
   "background": null,
   "padding": {
@@ -59,7 +59,7 @@
         "values": [0, 1, 2, 3],
         "labelExpr": "['2021–22','2022–23','2023–24','2024–25'][datum.value]",
         "labelAngle": 0,
-        "labelFontSize": 13,
+        "labelFontSize": 16,
         "grid": false
       }
     },
@@ -76,7 +76,7 @@
         "values": [1, 2, 3, 4, 5, 6, 7, 8],
         "labelExpr": "'#' + datum.value",
         "labelFontSize":18,
-        "titleFontSize": 18,
+        "titleFontSize": 16,
         "grid": true,
         "gridColor": "#e6e0d8"
       }
@@ -109,8 +109,8 @@
       },
       "legend": {
         "orient": "right",
-        "labelFontSize": 13,
-        "titleFontSize": 13,
+        "labelFontSize": 14,
+        "titleFontSize": 16,
         "symbolStrokeWidth": 3
       }
     },
