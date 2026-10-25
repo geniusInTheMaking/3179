@@ -13,15 +13,13 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 
-  <!-- CSS -->
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-  <!-- ==========================================
-       HERO / HEADER
-  =========================================== -->
+
 
   <header class="hero">
     <div class="hero-overlay"></div>
@@ -37,56 +35,58 @@
 
   <main>
 
+  
+
     <!-- ========================================
-         INTRODUCTION
+         SECTION 01 - THE PEOPLE BEHIND THE PAGES
     ========================================= -->
 
     <section class="intro">
 
-      <div class="intro-left">
+      <p class="section-label">Introduction</p>
+    
+      <!-- TWO-COLUMN INTRODUCTION -->
+      <div class="intro-text-grid">
+    
+        <!-- LEFT COLUMN -->
+        <div class="intro-column">
+    
+          <p class="intro-text">
+            <strong>Every page tells a story.</strong>
+            From magical worlds to gripping mysteries, books take us places 
+             and bring us together.
+         
+            But what gets Australia turning the pages? 
+            Which genres capture different generations? 
+            Does where we live shape what we love to read?
+          
+          </p>
+    
+        </div>
+    
 
-        <p class="section-label">Introduction</p>
-
-        <p class="intro-text">
-          <strong>Every Page Has a Story.</strong> Some people escape into fantasy while others get lost in a mystery.
-          From the books stacked on our bedside tables to the stories borrowed from local libraries, reading finds its way into our lives in all kinds of ways.
-        </p>
-
-        <p class="intro-text">
-          But what do Australians reach for when they pick up a book? Are reading habits changing with each generation, and do the places we live shape the stories we discover?
-        </p>
-
-        <p class="intro-text">
-          <strong>Australia, Between the Pages</strong> explores
-          the diverse reading habits of Australians, examining
-          how reading participation varies across generations
-          and communities. Through national reading trends
-          and public library data, the visualisation uncovers
-          where library engagement is strongest, what types
-          of books Australians read and borrow, and how
-          their reading preferences differ.
-        </p>
-
+        <div class="intro-column">
+          <p class="intro-text">
+            <strong>Australia, Between the Pages</strong> 
+            explores how reading habits vary across Australian generations and communities. Using national reading trends and public library data, 
+            it reveals patterns in reading participation, library engagement, and book preferences.
+        </div>
+    
       </div>
-
-      <!-- INTERACTIVE FACT CARDS -->
-
+    
+      <!-- KPI CARDS -->
       <div class="fact-cards">
-
-        <!-- FACT 1 -->
-
-        <button
-          class="fact-card"
-          type="button"
+    
+        <button class="fact-card" type="button"
           onclick="toggleFact(this)"
-          aria-label="Discover reading participation fact"
-        >
+          aria-label="Discover reading participation fact">
+    
           <div class="fact-front">
             <span class="fact-title">Reading Insight 01</span>
             <span class="fact-number">69% of people...</span>
             <span class="click-text">Click to uncover the fact.</span>
           </div>
-
+    
           <div class="fact-back">
             <span class="fact-description">
               69% of Australians aged 15+ read at least one
@@ -94,22 +94,19 @@
             </span>
             <span class="click-text-return">Click to return</span>
           </div>
+    
         </button>
-
-        <!-- FACT 2 -->
-
-        <button
-          class="fact-card"
-          type="button"
+    
+        <button class="fact-card" type="button"
           onclick="toggleFact(this)"
-          aria-label="Discover Australian library visits fact"
-        >
+          aria-label="Discover Australian library visits fact">
+    
           <div class="fact-front">
             <span class="fact-title">Reading Insight 02</span>
             <span class="fact-number">90.5 million visits...</span>
             <span class="click-text">Click to uncover the fact.</span>
           </div>
-
+    
           <div class="fact-back">
             <span class="fact-description">
               Australians made 90.5 million in-person visits
@@ -117,22 +114,19 @@
             </span>
             <span class="click-text-return">Click to return</span>
           </div>
+    
         </button>
-
-        <!-- FACT 3 -->
-
-        <button
-          class="fact-card"
-          type="button"
+    
+        <button class="fact-card" type="button"
           onclick="toggleFact(this)"
-          aria-label="Discover digital borrowing fact"
-        >
+          aria-label="Discover digital borrowing fact">
+    
           <div class="fact-front">
             <span class="fact-title">Reading Insight 03</span>
             <span class="fact-number">32% digital loans</span>
             <span class="click-text">Click to uncover the fact.</span>
           </div>
-
+    
           <div class="fact-back">
             <span class="fact-description">
               Digital borrowing accounted for 32% of all
@@ -140,50 +134,40 @@
             </span>
             <span class="click-text-return">Click to return</span>
           </div>
+    
         </button>
-
+    
       </div>
-
+    
     </section>
 
 
-    <!-- ========================================
-         SECTION 01 - THE PEOPLE BEHIND THE PAGES
-    ========================================= -->
-
-    <section class="story-section">
+    <section class="map-section">
 
       <h2 class="section-label">
         01 - The People Behind the Pages
       </h2>
 
-      <p class="intro-text">
-      Explore where reading fits into Australians’ free time and how participation differs across age groups and genders.
-      </p>
-
-      <!-- ========================================
-           VISUALISATION 1 - LOLLIPOP CHART
-      ========================================= -->
-
-      <h2 class="subtitle">
+      <div class="map-intro">
+        <p class="intro-text">
+          Explore how reading habits vary by age & gender amongst Australians.
+           </p>
+      </div>
+      <h2 class="subtitle-2 map-subtitle">
         How does reading participation change as Australians get older?
       </h2>
 
-      <p class="intro-text">
-        This lollipop chart explores how participation in
-        leisure reading varies across generations in Australia. 
-        There statistics reflect reading participation among survey respondents.
-      </p>
+      <div class="map-intro">
+        <p class="intro-text">
+          The lollipop chart explores <strong> generational differences in leisure reading </strong> across Australia. 
+          Percentages reflect survey respondents, who could select multiple options.
+      </div>
 
       <div class="generation-visual-layout">
-
-        <!-- LOLLIPOP CHART -->
 
         <div class="chart-container">
           <div id="chart1"></div>
         </div>
-
-        <!-- INSIGHT PANEL -->
 
         <aside class="generation-insight">
 
@@ -196,7 +180,7 @@
             <div class="insight-item">
               <h3>More time for leisure</h3>
 
-              <p>
+              <p class = "intro-text-box">
                 Older Australians may have fewer work and
                 family commitments after retirement, creating
                 more time for leisure reading.
@@ -206,7 +190,7 @@
             <div class="insight-item">
               <h3>Different leisure habits</h3>
 
-              <p>
+              <p class = "intro-text-box">
                 Younger Australians divide their leisure time
                 between streaming, gaming, social media, and
                 other activities, while older generations may
@@ -215,58 +199,57 @@
             </div>
 
           </div>
+          
         </aside>
 
       </div>
+
+      <h2 class="subtitle-2 map-subtitle">
+        Who spends longer reading: men or women?
+      </h2>
+
+      <div class="map-intro">
+        <p class="intro-text">
+          The connected dot plot below <strong> compares average daily reading hours </strong>
+          among people who participated, highlighting differences between
+          men and 
+        </p>
+
+        <p class="intro-text">
+          women across generations. Statistics represent the average number of hours spent on leisure reading by male and female 
+          survey respondents.
+        </p>
+
+
+      </div>
+      
+      <!-- DUMBBELL CHART -->
+      <div class="dumbbell-chart-container">
+        <div id="chart2"></div>
+      </div>
+      
+      </section>
+
+
+
 
 
       <!-- ========================================
            VISUALISATION 2 - DUMBBELL PLOT
       ========================================= -->
 
-      <h2 class="subtitle-2">
-        Who spends longer reading: Australian men or women?
-      </h2>
-
-      <p class="intro-text-2">
-        The connected dot plot compares average daily reading hours
-        among people who participated, highlighting differences
-        between men and women across generations.
-      </p>
-
-      <!-- LEGEND -->
-
-      <div class="dumbbell-legend">
-
-        <div class="legend-item">
-          <span class="legend-dot male-dot"></span>
-          <span>Male</span>
-        </div>
-
-        <div class="legend-item">
-          <span class="legend-dot female-dot"></span>
-          <span>Female</span>
-        </div>
-
-      </div>
-
-      <!-- DUMBBELL CHART -->
-
-      <div class="dumbbell-chart-container">
-        <div id="chart2"></div>
-      </div>
-
-    </section>
-
+      
     <section class="map-section">
 
       <h2 class="section-label">
-        02 - The People Behind the Pages
+        02 - Reading Across Communities
       </h2>
+
+     
 
       <div class="map-intro">
         <p class="intro-text">
-          Reading habits extend beyond individual preferences. 
+ 
           Across Australia, public libraries connect communities with books, 
           resources and shared spaces. Yet the ways people engage with these services 
           differ from place to place.
@@ -275,80 +258,65 @@
         <p class="intro-text">
           From library membership and borrowing activity to physical visits and digital collections, this chapter explores how public library engagement varies across Australian communities.
         </p>
-
   
       </div>
 
+      <h2 class="subtitle-2 map-subtitle">
+        Does Library Membership Vary Across States?
+      </h2>
     
       <div class="map-intro">
         <p class="intro-text">
-          Library membership provides a different measure of engagement, showing what share of the population is registered with public library services across Australia.
-          Comparing three of Australia's most populous states reveals a striking similarity in membership rates, despite their different population sizes.
-        </p>
+         
+          The waffle chart <strong>compares library membership rates </strong> relative to population
+          across <strong> New South Wales (NSW), Queensland, and Victoria</strong> and reveals similar registration levels despite differences in population size.
 
         <p class="intro-text">
-          New South Wales has the highest membership rate at 34.7%, leading Queensland by 3.6 percentage points. 
-          Victoria and Queensland differ by less than 0.5 points.
-          However, around two-thirds of residents are not registered members. 
-          This does not necessarily mean low engagement, as people can share memberships or use library spaces and programs without registering.
+          However, membership rates only reflect registration rather than full extent of library engagement. 
+          This is because residents can also use libraries for study, community activities and other services.
         </p>
-      
-       
+    
       </div>
 
       <div id="chart-waffle"></div>
 
-      <h2 class="subtitle-2 map-subtitle">
+      
+      <h2 class="subtitle-2 map-subtitle-second">
         Where Is Library Borrowing Strongest in NSW?
       </h2>
+ 
 
-    
         <div class="map-visual-layout">
 
-          <!-- TEXT ON THE LEFT -->
+       
           <div class="map-text">
-
             <p class="intro-text">
-              Public library borrowing varies considerably across New South Wales, 
-              influenced by population distribution, library accessibility and local reading demand.
-              Sydney's metropolitan councils account for some of the largest borrowing volumes. T
-              heir larger populations and potentially more extensive library networks may contribute to higher total circulation.
-            </p>
-
-            <p class="intro-text">
-              However, high borrowing volumes do not necessarily indicate stronger borrowing habits. Loans per resident account for population differences, revealing how intensively libraries are used relative to the communities they serve.
-            </p>
-
-            <p class="intro-text">
-              Differences in borrowing intensity may reflect library accessibility, collection availability and local demand. Areas with fewer total loans can still demonstrate substantial borrowing activity relative to their population.
+              The <strong>proportional symbol map </strong> compares <strong> library borrowings </strong> across NSW councils. Circle size represents total library loans, while darker colour luminance indicate more loans per resident.
               </p>
 
+            <p class="intro-text">
+              Larger populations can contribute to higher borrowing volumes, 
+              but total loans alone do not reveal how intensively libraries are used.    </p>
+
+            <p class="intro-text">
+              Comparing average loans per resident helps distinguish population size from borrowing activity, revealing differences that total loan counts may hide.
+            </p>
+
               <p class="intro-text">
-                Hover over the map to compare total loans and loans per resident across NSW councils.
+                <strong><em>Hover over the circles to explore individual councils.</em></strong>
               </p>
 
           </div>
 
+          <section class="map-background">
           <div class="map-chart-container">
             <div id="chart3"></div>
           </div>
+        </section>
 
         </div>
 
-        <h2 class="subtitle-2">
-          Where Do Australians Gather at Their Libraries?
-        </h2>
-
-        <div class="map-intro">
-          <p class="intro-text">
-            Reading habits reveal who reads and how much time they spend doing so. 
-            But beyond individual preferences, public libraries play an important 
-            role in connecting readers with books, resources and their communities. 
-            Yet library engagement is not uniform across Australia.  </p>
         
-          <p class="intro-text">
-            Differences in population, accessibility and local demand may shape how communities use library services. From membership and borrowing to physical visits and digital collections, this chapter explores the changing ways Australians connect with their libraries.   </p>
-        </div>
 
         <!-- NSW LINKED DOT MAP -->
 
@@ -360,25 +328,30 @@
   Where Are NSW Libraries Most Visited?
 </h2>
 
-<!-- TWO EXPLANATORY PARAGRAPHS -->
+
 
 <div class="map-intro">
 
-  <!-- LEFT PARAGRAPH -->
-  <p class="intro-text">
-    Library engagement extends beyond borrowing books, with physical visits reflecting how communities use libraries for reading, studying and activities. Visits are concentrated around Sydney and coastal NSW, possibly due to higher population densities and better access to library branches.
-  </p>
 
-  <!-- RIGHT PARAGRAPH -->
   <p class="intro-text">
-    Inland councils generally record fewer visits, potentially due to dispersed populations and longer travel distances. However, lower visit totals do not necessarily indicate weaker engagement, as population size and digital library use also influence these figures.
-    <strong> Click a council to see the statistics closer!</strong>
+
+    The <strong>dot map </strong>visualises physical <strong> library visits across NSW councils in 2024 to 2025 </strong> . It highlights the distribution 
+    of library activity beyond book borrowings.
+    Visits are concentrated around Sydney and coastal NSW,
+
+    </p>
+
+
+  <p class="intro-text-2">
+
+     reflecting higher population density and library accessibility. Lower inland visit totals may reflect smaller, more dispersed populations rather than weaker engagement.    
+     <strong><em> Click a council to see the statistics closer! </em> </strong>
   </p>
   
 
 </div>
 
-<!-- MAPS SIDE BY SIDE -->
+
 
 <div class="nsw-map-layout">
 
@@ -428,44 +401,40 @@
 
 <!-- QUEENSLAND DIGITAL BORROWING -->
 
-<h2 class="subtitle-2 map-subtitle">
+<h2 class="subtitle-2 map-subtitle-2">
   Beyond Physical Books: How Digital Is Library Borrowing in Queensland?
 </h2>
 
-<div class="map-visual-layout">
+
+  <div class="map-visual-layout">
 
   <!-- LEFT: EXPLANATORY TEXT -->
   <div class="map-text">
 
     <p class="intro-text">
-      Digital collections allow readers to borrow books and
-      other materials without visiting a physical library.
-      However, the share of borrowing conducted digitally
-      varies across Queensland councils.
+     
+      The <strong>choropleth map </strong>  compares the <strong>percentage of library borrowing conducted digitally </strong> across Queensland councils in 2024–25.
+          </p>
+
+    <p class="intro-text">
+      These differences may reflect library accessibility, internet connectivity and local preferences. 
+      Digital borrowing may be especially valuable in communities with limited access to physical libraries.
     </p>
 
     <p class="intro-text">
-      These differences may reflect access to physical
-      library branches, internet connectivity and local
-      borrowing preferences. For geographically dispersed
-      communities, digital collections may help overcome
-      long travel distances.
-    </p>
-
-    <p class="intro-text">
-      However, a higher digital borrowing share does not
-      necessarily indicate greater overall library use.
-      Councils with fewer physical loans may still record
-      a relatively high digital percentage.
+      However, a higher digital percentage does not indicate greater overall library use, 
+      as it reflects the share of borrowing rather than total loan volumes.
     </p>
 
   </div>
+  <div class="qld-map-background">
 
   <!-- RIGHT: CHOROPLETH MAP -->
-  <div class="map-chart-container">
+  <div class="map-chart-container-2">
     <div id="map-qld-digital"></div>
   </div>
 
+</div>
 </div>
 
  
@@ -488,15 +457,11 @@
 
       <div class="map-intro">
         <p class="intro-text">
-          Libraries connect Australians with books, but what readers choose from 
-          those shelves tells another story. From novels and non-fiction to graphic 
-          novels and poetry, reading preferences reflect different interests, experiences and audiences. </p>
+          Beyond library engagement, the books Australians choose reveal diverse interests and reading preferences. 
+        </p>
       
         <p class="intro-text">
-          This chapter begins with the types of literature Australians enjoy, 
-          before looking more closely at borrowing patterns in public libraries. 
-          By exploring genres, languages and changes over time, we uncover how 
-          the books people choose contribute to Australia's diverse reading landscape.
+          This chapter explores what Australians read, how preferences differ across audiences, and how borrowing trends change over time.
         </p>
       </div>
 
@@ -511,16 +476,13 @@
   <div class="bar-chart-text">
 
     <p class="intro-text">
-      Novels and short stories are the most widely read category, suggesting that storytelling, entertainment and escapism remain important motivations for reading among Australians.
-    </p>
+      Novels are the most widely read category, suggesting that storytelling and entertainment remain key reading motivations among Australians.</p>
 
     <p class="intro-text">
-      However, instructional and creative non-fiction also attract substantial readership. This may reflect an interest in practical knowledge, personal development and real-world experiences, showing that reading serves purposes beyond entertainment.
-    </p>
+      Crime and creative non-fiction also attract substantial readership, suggesting that Australians value books for exploring real-world events, understanding human behaviour and gaining insights from personal experiences.  </p>
 
     <p class="intro-text">
-      Graphic novels, comics and poetry attract smaller shares of respondents, potentially reflecting more specialised interests rather than a lack of cultural significance.
-    </p>
+      Comics and poetry attract smaller audiences, potentially reflecting more specialised interests rather than a lack of cultural significance. </p>
 
   </div>
 
@@ -541,26 +503,18 @@
   <div class="bar-chart-text">
 
     <p class="intro-text">
-      Reading preferences can vary across generations,
-      reflecting different interests, experiences and
-      stages of life. From picture books and graphic
-      novels to fiction and non-fiction, each audience
-      may favour different types of literature.
+     
+       The heatmap compares the <strong> percentage share </strong> of selected library checkouts across <strong>juveniles, young adults and adults </strong> in Brisbane public libraries.
     </p>
 
     <p class="intro-text">
-      This heatmap compares selected Brisbane public
-      library checkout categories across juveniles,
-      young adults and adults. The percentages show
-      the share of selected checkouts within each
-      audience.
-    </p>
+      Younger readers may prefer picture books and graphic novels, while older readers may choose more fiction and non-fiction.
+      These differences show how public libraries cater to different age groups by offering a wide range of reading materials.
+     </p>
 
     <p class="intro-text">
-      Hover over each cell to explore checkout counts
-      and percentage shares. Darker blue cells indicate
-      categories that account for a larger share of
-      an audience's selected checkouts.
+      <strong> <em>Hover over each cell to explore checkout counts
+      and percentage shares.</em> </strong> 
     </p>
   </div>
 
@@ -572,16 +526,15 @@
 
 </div>
 
-
-
-<!-- BAR CHART ON THE RIGHT -->
-<div class="bar-chart-container">
-  <div id="chart-bar"></div>
-</div>
-
 <h2 class="subtitle-2 map-subtitle">
   Reading Beyond English
 </h2>
+
+
+
+
+
+
 
 <div class="butterfly-visual-layout">
 
@@ -589,11 +542,8 @@
   <div class="butterfly-text">
 
     <p class="intro-text">
-      Australia's multicultural communities are reflected
-      in the range of languages available through public
-      library collections. Beyond English, libraries provide
-      access to literature in languages such as Chinese,
-      Japanese, French, Spanish and Korean.
+      Australia's cultural diversity is reflected in the range of languages available in public libraries. 
+      This butterfly chart <strong> compares book checkouts across five languages</strong> in 2024 and 2026, highlighting changes in borrowing preferences.
     </p>
 
     <p class="intro-text">
@@ -601,12 +551,6 @@
       numbers among these five languages in both years,
       while Spanish and Korean were the only languages
       to record increases.
-    </p>
-
-    <p class="intro-text">
-      The butterfly chart compares checkout volumes in
-      2024 and 2026, revealing how borrowing patterns
-      differ across language collections.
     </p>
 
   </div>
@@ -624,13 +568,13 @@
 
 <div class="map-intro">
   <p class="intro-text">
-    Borrowing preferences are not fixed. As readers' interests and library collections evolve, different book categories rise and fall in popularity across NSW public libraries.
-    These shifts may reflect changing reader demand, collection availability and borrowing patterns across age groups. </p>
+    Borrowing preferences change over time as different book categories rise and fall in popularity across NSW public libraries. 
+    This animated bump chart tracks changes in category rankings, highlighting shifts in reader preferences.
+ </p>
 
   <p class="intro-text">
-    However, a change in rank does not necessarily indicate a change in borrowing volume, but rather a category's position relative to others.
-
-   <strong> Click "Play Animation" to watch how rankings evolve over time, or select a specific year to explore changes at your own pace. </p></strong>
+    These changes may reflect changing reading interests, collection availability or borrowing habits.
+    Click <strong>  "Play Animation" </strong> to explore ranking changes over time, or select a specific year to compare categories.</p>
 </div>
 
 
@@ -681,15 +625,10 @@
 
 <div class="map-intro">
   <p class="intro-text">
-    The books Australians read are shaped not only by personal interests, 
-    but also by how they discover new stories. A recommendation from a friend, 
-    a visit to a library or bookshop, or a post on social media can all influence 
-    which book someone picks up next. </p>
+    Book choices are influenced by how readers discover new stories, from personal recommendations and bookshops to libraries and social media. </p>
 
   <p class="intro-text">
-    As reading moves between physical and digital spaces, the ways people encounter 
-    books are becoming increasingly varied. But are traditional recommendations still 
-    more influential than online discovery?
+    As digital platforms reshape book discovery, do traditional recommendations still hold more influence than online sources?
   </p>
 </div>
 
@@ -697,9 +636,39 @@
   Where Do Australians Find Their Next Read?
 </h2>
 
-<div class="discovery-chart-container">
-  <div id="chart-discovery"></div>
+<div class="butterfly-visual-layout discovery-visual-layout">
+
+  <!-- TEXT ON THE LEFT -->
+  <div class="butterfly-text">
+
+    
+
+    <p class="intro-text">
+      Traditional discovery methods continue to play a major role in Australians' reading choices. Word of mouth is nearly twice as common as social media, 
+      suggesting that personal recommendations remain more influential than online trends.
+    </p>
+
+    <p class="intro-text">
+      Libraries exceed social media by 7 percentage points, highlighting their continued importance in book discovery. Social media also has a stronger reach than podcasts and online forums.
+     </p>
+
+    <p class="intro-text">
+     
+        Respondents could select multiple discovery methods,
+        so percentages do not add up to 100%.
+     
+    </p>
+
+  </div>
+
+  <!-- CHART ON THE RIGHT -->
+  <div class="butterfly-chart-container discovery-chart-container">
+    <div id="chart-discovery"></div>
+  </div>
+
+  
 </div>
+
 
 <h2 class="section-label">
   Conclusion 
@@ -708,43 +677,34 @@
 
 <div class="map-intro">
   <p class="intro-text">
-    Reading in Australia is not defined by a single generation, community or type of book. Across the country, people engage with reading in different ways, shaped by their interests, circumstances and access to library services.
-    The patterns explored throughout this visualisation reveal important contrasts. Reading participation differs across generations, while library membership, borrowing and visits vary between communities. The books people choose are equally diverse, ranging from fiction and non-fiction to collections serving different audiences and languages.</p>
+    Australia's reading landscape is shaped by more than the books people choose. Differences in age, location and interests influence how Australians read, engage with libraries and discover new stories. While reading habits continue to evolve libraries remain an important connection between
+     </p>
 
   <p class="intro-text">
-    Yet one connection runs throughout the story: reading is both a personal experience and a shared activity. Libraries provide access to collections and spaces, while recommendations from friends, family and communities help readers discover what to explore next.
-
-    As physical and digital collections continue to coexist, Australia's reading landscape will keep evolving. Understanding these differences can help libraries and communities respond to changing needs and make reading more accessible.
-    Every reader has a story. And every story begins somewhere.
+  people, books and communities. Understanding these changing patterns can help ensure that reading remains accessible and relevant to future generations. Every page tells a story, and Australia's reading story is still being written.
   </p>
 </div>
 
 
-
-
-
-
     </section>
 
-    <!-- ========================================
-     SOURCES AND CREDITS
-========================================= -->
-
-<!-- ========================================
-     SOURCES & CREDITS
-========================================= -->
 
 <section class="credits-section">
 
-  <h2 class="section-label">Sources & Credits</h2>
+  <h2 class="subtitle-2">Author
+
+    
+  </h2>
+
+  <p class="credits-author">
+    <strong>Gayathri Maheswaran </strong>
+    <span>| FIT3179 | 25 October, 2026 </span>
+  
+  </p>
+
 
   <h2 class="subtitle-2">Data Sources</h2>
 
-  <p class="credits-intro">
-    Data for this visualisation was obtained from
-    publicly available Australian government,
-    cultural and public library datasets.
-  </p>
 
   <div class="credits-list">
 
@@ -761,7 +721,7 @@
       <strong>Creative Australia</strong>
       <a href="https://creative.gov.au/research/creating-value-results-national-arts-participation-survey"
          target="_blank" rel="noopener noreferrer">
-        Creating Value: National Arts Participation Survey, 2022
+        Creating Value: National Arts Participation Survey, 2024
       </a>
       <span>Reading and literature preferences</span>
     </p>
@@ -825,24 +785,7 @@
     </p>
 
   </div>
-
-  <h2 class="subtitle-2">Tools & Technologies</h2>
-
-  <p class="credits-intro">
-    Developed using HTML, CSS, JavaScript,
-    Vega, Vega-Lite and Vega-Embed.
-  </p>
-
-  <h2 class="subtitle-2">Author</h2>
-
-  <p class="credits-author">
-    <strong>Gayathri Maheswaran </strong>
-    <span>FIT3179 – Data Visualisation 2</span>
-    <span>Monash University | 2026</span>
-  </p>
-
 </section>
-
 
   </main>
 
@@ -858,9 +801,7 @@
   </script>
 
 
-  <!-- ==========================================
-       VISUALISATION 1 - LOAD LOLLIPOP CHART
-  =========================================== -->
+
 
   <script>
     vegaEmbed("#chart1", "js/chart1.json", {
@@ -889,11 +830,6 @@
 </script>
 
 
-
-
-  <!-- ==========================================
-       VISUALISATION 2 - LOAD DUMBBELL CHART
-  =========================================== -->
 
   <script>
     vegaEmbed("#chart2", "js/chart2.json", {
@@ -1004,7 +940,7 @@
   
       view = result.view;
   
-      // Stop an existing animation
+
       function stopAnimation() {
         if (animationTimer !== null) {
           clearTimeout(animationTimer);
@@ -1015,7 +951,7 @@
         playButton.textContent = "▶ Play Animation";
       }
   
-      // Highlight the selected year
+
       function highlightYear(index) {
         yearButtons.forEach(button => {
           button.classList.toggle(
