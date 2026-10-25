@@ -1,147 +1,179 @@
 
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Book discovery methods reported by Australians aged 15+ in the 2025 National Arts Participation Survey. Multiple responses allowed.",
-    "width": 960,
-    "height": 490,
-    "background": null,
-    "padding": 12,
-  
-    "data": {
-      "url": "data/book_discovery.csv",
-      "format": {
-        "type": "csv"
-      }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Book discovery methods reported by Australians aged 15+ in the 2025 National Arts Participation Survey. Multiple responses allowed.",
+  "background": null,
+  "width": 780,
+  "height": 600,
+  "padding": {
+    "left": 100,
+    "right": 10,
+    "top": 10,
+    "bottom": 10
+  },
+
+  "data": {
+    "url": "data/book_discovery.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+
+  "transform": [
+    {
+      "calculate": "toNumber(datum.Percentage)",
+      "as": "Pct"
     },
-  
-    "transform": [
-      {
-        "calculate": "datum.Percentage + '%'",
-        "as": "PercentLabel"
-      }
-    ],
-  
-    "encoding": {
-      "x": {
-        "field": "X",
-        "type": "quantitative",
-        "scale": {
-          "domain": [0, 1000]
-        },
-        "axis": null
+    {
+      "calculate": "datum.Pct / 100 * 2 * PI",
+      "as": "EndAngle"
+    },
+    {
+      "calculate": "datum.Method + ' (' + format(datum.Pct, '.0f') + '%)'",
+      "as": "MethodLabel"
+    },
+    {
+      "calculate": "datum.Method == 'Word of mouth' ? 255 : datum.Method == 'Libraries' ? 215 : datum.Method == 'Bookshops' ? 175 : datum.Method == 'Social media' ? 135 : datum.Method == 'Podcasts' ? 95 : datum.Method == 'Online forums' ? 55 : 25",
+      "as": "OuterRadius"
+    },
+    {
+      "calculate": "datum.OuterRadius - 17",
+      "as": "InnerRadius"
+    },
+    {
+      "calculate": "datum.OuterRadius - 8.5",
+      "as": "MidRadius"
+    },
+    {
+      "calculate": "300 - datum.MidRadius",
+      "as": "LabelY"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "cornerRadius": 12
       },
-      "y": {
-        "field": "Y",
-        "type": "quantitative",
-        "scale": {
-          "domain": [0, 490],
-          "reverse": true
-        },
-        "axis": null
-      }
-    },
-  
-    "layer": [
-      {
-        "mark": {
-          "type": "circle",
-          "opacity": 0.95,
-          "stroke": "#FFFFFF",
-          "strokeWidth": 2
-        },
-        "encoding": {
-          "size": {
-            "field": "Percentage",
-            "type": "quantitative",
-            "scale": {
-              "type": "linear",
-              "domain": [0, 39],
-              "range": [0, 31000]
-            },
-            "legend": null
+      "encoding": {
+        "theta": {
+          "field": "EndAngle",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 6.283185307179586],
+            "range": [0, 6.283185307179586]
           },
-          "color": {
+          "stack": false
+        },
+        "theta2": {
+          "datum": 0
+        },
+        "radius": {
+          "field": "OuterRadius",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 360],
+            "range": [0, 360]
+          }
+        },
+        "radius2": {
+          "field": "InnerRadius",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 360],
+            "range": [0, 360]
+          }
+        },
+        "color": {
+          "field": "Method",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Word of mouth",
+              "Libraries",
+              "Bookshops",
+              "Social media",
+              "Podcasts",
+              "Online forums",
+              "Book clubs"
+            ],
+            "range": [
+              "#238B8B",
+              "#397DC6",
+              "#F29A38",
+              "#9063C9",
+              "#4FAE70",
+              "#22AFC4",
+              "#D5AC35"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
             "field": "Method",
             "type": "nominal",
-            "scale": {
-              "range": [
-                "#00A6A6",
-                "#F2B134",
-                "#537FE7",
-                "#8B5CF6",
-                "#35B779",
-                "#F28C38",
-                "#23B5D3",
-                "#A3C644",
-                "#D68CE0",
-                "#3979A8",
-                "#D4A62A"
-              ]
-            },
-            "legend": {
-              "title": "Discovery Methods",
-              "orient": "right",
-              "direction": "vertical",
-              "labelFont": "Arial",
-              "labelFontSize": 14,
-              "labelColor": "#333333",
-              "titleFont": "Arial",
-              "titleFontSize": 16,
-              "titleFontWeight": "bold",
-              "titleColor": "#333333",
-              "symbolType": "circle",
-              "symbolSize": 220,
-              "padding": 15,
-              "offset": 25,
-              "labelLimit": 200
-            }
+            "title": "Discovery method"
           },
-          "tooltip": [
-            {
-              "field": "Method",
-              "type": "nominal",
-              "title": "Discovery method"
-            },
-            {
-              "field": "Percentage",
-              "type": "quantitative",
-              "title": "Respondents (%)",
-              "format": ".0f"
-            }
-          ]
-        }
-      },
-  
-      {
-        "mark": {
-          "type": "text",
-          "font": "Arial",
-          "fontWeight": "bold",
-          "fontSize": 18,
-          "color": "#FFFFFF",
-          "align": "center",
-          "baseline": "middle"
-        },
-        "encoding": {
-          "text": {
-            "field": "PercentLabel",
-            "type": "nominal"
+          {
+            "field": "Pct",
+            "type": "quantitative",
+            "title": "Respondents (%)",
+            "format": ".0f"
           }
-        }
+        ]
       }
-    ],
-  
-    "config": {
-      "view": {
-        "stroke": null
+    },
+    {
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 15,
+        "fontWeight": "normal",
+        "color": "#333333",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12
       },
-      "axis": {
-        "grid": false
-      },
-      "legend": {
-        "labelFont": "Arial",
-        "titleFont": "Arial"
+      "encoding": {
+        "x": {
+          "datum": 390,
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 780],
+            "range": [0, 780]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "LabelY",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 680],
+            "range": [0, 680]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "MethodLabel",
+          "type": "nominal"
+        }
       }
     }
+  ],
+
+  "resolve": {
+    "scale": {
+      "theta": "independent",
+      "radius": "independent"
+    }
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial"
   }
-  
+}
