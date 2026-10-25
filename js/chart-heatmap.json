@@ -3,12 +3,6 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "background": null,
 
-  "title": {
-    "text": "Reading preferences differ sharply by audience",
-    "fontSize": 16,
-    "subtitleFontSize": 13,
-    "anchor": "start"
-  },
 
   "width": 500,
   "height": 300,
@@ -45,8 +39,12 @@
     },
 
     {
-      "calculate": "format(datum.Percentage, '.1f') + '%'",
+      "calculate": " round(datum.Percentage * 10) / 10 == 2.2 || round(datum.Percentage * 10) / 10 == 5.8 ||round(datum.Percentage * 10) / 10 == 3.3 ? '' : format(datum.Percentage, '.1f') + '%'",
       "as": "PercentageLabel"
+    },
+    {
+      "calculate": "format(datum.Percentage, '.1f') + '%'",
+      "as": "TooltipPercentage"
     }
   ],
 
@@ -70,42 +68,61 @@
           ],
           "axis": {
             "labelAngle": 0,
-            "labelFontSize": 13,
-            "titleFontSize": 13
+            "labelFontSize": 15,
+            "titleFontSize": 15
           }
         },
 
-        "y": {
-          "field": "Category",
-          "type": "nominal",
-          "title": "Reading category",
-          "sort": [
-            "Fiction",
-            "Non-Fiction",
-            "Graphic Novels",
-            "Picture Books",
-            "Magazines"
-          ],
-          "axis": {
-            "labelFontSize": 13,
-            "titleFontSize": 13
-          }
-        },
+ "y": {
+  "field": "Category",
+  "type": "nominal",
+  "title": ["Reading", "Category"],
+  "sort": [
+    "Graphic Novels",
+    "Non-Fiction",
+    "Fiction",
+    "Magazines",
+    "Picture Books"
+  ],
+  "axis": {
+    "labelFontSize": 15,
+    "labelPadding": 8,
+    "titleFontSize": 15,
+    "titleFontWeight": "bold",
+    "titlePadding": 15,
+    "titleAngle": 0,
+    "titleLineHeight": 18
+  }
+},
 
         "color": {
           "field": "Percentage",
           "type": "quantitative",
-          "title": "Share (%)",
+          "title": [
+          "Share of checkouts",
+          "(%)"
+        ],
           "scale": {
-            "scheme": "blues",
-            "domain": [0, 60]
-          },
-          "legend": {
-            "orient": "right",
-            "gradientLength": 250,
-            "values": [0, 10, 20, 30, 40, 50, 60],
-            "labelExpr": "datum.value + '%'"
-          }
+  "domain": [0, 60],
+  "range": [
+    "#F5E6D3",
+    "#6B341B"
+  ]
+},
+  "legend": {
+  "orient": "bottom",
+  "direction": "horizontal",
+  "gradientLength": 500,
+  "gradientThickness": 15,
+  "title": "Share of checkouts (%)",
+  "titleOrient": "top",
+  "titleAnchor": "middle",
+  "values": [0, 10, 20, 30, 40, 50, 60],
+  "labelExpr": "datum.value + '%'",
+  "labelFontSize": 13,
+  "titleFontSize": 14,
+  "offset": 20
+}
         },
 
         "tooltip": [
@@ -126,9 +143,9 @@
             "format": ","
           },
           {
-            "field": "PercentageLabel",
+            "field": "TooltipPercentage",
             "type": "nominal",
-            "title": "Share"
+            "title": "Share of audience checkouts (%)"
           }
         ]
       }
@@ -153,16 +170,16 @@
         },
 
         "y": {
-          "field": "Category",
-          "type": "nominal",
-          "sort": [
-            "Fiction",
-            "Non-Fiction",
-            "Graphic Novels",
-            "Picture Books",
-            "Magazines"
-          ]
-        },
+        "field": "Category",
+        "type": "nominal",
+        "sort": [
+          "Graphic Novels",
+          "Non-Fiction",
+          "Fiction",
+          "Magazines",
+          "Picture Books"
+        ]
+      },
 
         "text": {
           "field": "PercentageLabel"
